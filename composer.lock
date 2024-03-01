@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a03a43237a09587ae2ae6793244292e4",
+    "content-hash": "792a4f4efce17781754e1c0a401a9ca3",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -71,6 +71,63 @@
                 "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.2.18"
             },
             "time": "2024-02-25T11:04:10+00:00"
+        },
+        {
+            "name": "axiostudio/comuni-italiani",
+            "version": "1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axiostudio/comuni-italiani.git",
+                "reference": "d54464cc8e9c136cfab36a1ad1f3c1269d0c2e23"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axiostudio/comuni-italiani/zipball/d54464cc8e9c136cfab36a1ad1f3c1269d0c2e23",
+                "reference": "d54464cc8e9c136cfab36a1ad1f3c1269d0c2e23",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "php": "^8.0|^8.1|^8.2|^8.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Axiostudio\\Comuni\\ComuniServiceProvider"
+                    ],
+                    "aliases": {
+                        "comuni": "Axiostudio\\Comuni\\ComuniFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Axiostudio\\Comuni\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Axio Studio",
+                    "email": "info@axio.studio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Pacchetto Laravel per la gestione dei comuni italiani",
+            "homepage": "https://github.com/axiostudio/comuni-italiani",
+            "keywords": [
+                "axiostudio",
+                "comuni"
+            ],
+            "support": {
+                "issues": "https://github.com/axiostudio/comuni-italiani/issues",
+                "source": "https://github.com/axiostudio/comuni-italiani/tree/1.2"
+            },
+            "time": "2024-02-05T16:05:47+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
