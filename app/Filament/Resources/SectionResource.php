@@ -3,7 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\SectionResource\Pages;
-use App\Filament\Resources\SectionResource\RelationManagers;
+//use App\Filament\Resources\SectionResource\RelationManagers;
 use App\Models\City;
 use App\Models\Province;
 use App\Models\Section;
@@ -12,14 +12,17 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Get;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class SectionResource extends Resource
 {
     protected static ?string $model = Section::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Sezione';
+    protected static ?string $pluralModelLabel = 'Sezioni';
+    //protected static ?string $navigationGroup = 'Sezioni';
+    protected static ?string $navigationIcon = 'heroicon-o-inbox-arrow-down';
 
     public static function form(Form $form): Form
     {
@@ -34,13 +37,16 @@ class SectionResource extends Resource
                     ->label('Comune')
                     ->options(fn(Forms\Get $get)=>City::where('province_id',(int)$get('provincia_id'))->pluck('name','id'))
                     ->disabled(fn(Forms\Get $get) : bool => ($get('comune_id') == null &&  $get('provincia_id') == null))
-                    ->afterStateUpdated(fn (Forms\Set $set) => $set('comune_id', 0))
+                    //->afterStateUpdated(fn (Forms\Set $set) => $set('comune_id', 0))
                     ->required(),
 
                 Forms\Components\TextInput::make('numero')
                     ->label('Sezione')
                     ->required()
-                    ->numeric(),
+                    ->numeric()
+                    ->unique('sections', 'numero', null, 'id', function (Get $get, $rule) {
+                        return $rule->where('comune_id', $get('comune_id'));
+                    }),
                 Forms\Components\TextInput::make('schedebianche')
                     ->label('Schede Bianche')
                     ->required()
@@ -112,8 +118,6 @@ class SectionResource extends Resource
                 Forms\Components\TextInput::make('marsiliopresidente')
                     ->required()
                     ->numeric(),
-
-
             ])->columns(3);
     }
 
