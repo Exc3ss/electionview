@@ -126,82 +126,50 @@ class SectionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('numero')
+                    ->label('Sezione')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('schedebianche')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+                Tables\Columns\TextColumn::make('city.name')
+                    ->label('Comune')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('schedenulle')
+                    ->sortable()
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: false),
+                Tables\Columns\TextColumn::make('province.name')
+                    ->label('Provincia')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('aventidiritto')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('votanti')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('damico')
+                    ->label('Voti D\'Amico')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('m5s')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('pd')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('azione')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('verdisi')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('abruzzoinsieme')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('damicopresidente')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('marsilio')
+                    ->label('Voti Marsilio')
                     ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('fdi')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('lega')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('forzaitalia')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('noimoderati')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('unionedicentro')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('marsiliopresidente')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Inserito il')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Modificato il')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('comune_id')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('provincia_id')
-                    ->numeric()
-                    ->sortable(),
+
             ])
             ->filters([
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()->iconButton()->label('Modifica'),
+                Tables\Actions\DeleteAction::make()->iconButton()->label('Cancella'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -225,4 +193,6 @@ class SectionResource extends Resource
             'edit' => Pages\EditSection::route('/{record}/edit'),
         ];
     }
+
+
 }
