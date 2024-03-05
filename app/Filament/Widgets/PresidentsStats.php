@@ -22,18 +22,21 @@ class PresidentsStats extends BaseWidget
         $arrayMarsilioVote = $this->getDataMarsilio();
         $arrayDamicoVote = $this->getDataDAmico();
         //dd($arrayMarsilioVote);
-        return [
-            Stat::make('MARSILIO (Cdx)', number_format(($totalVotiMarsilio / ($totalAventiDiritto - $totalSchedeNulle - $totalSchedeBianche)) * 100, 2) . "%")
-                ->description("Voti Totali ottenuti: " . $totalVotiMarsilio)
-                ->chart($arrayMarsilioVote['marsilio_values'])
-                ->color('info'),
-            Stat::make('D\'AMICO (Csx)', number_format(($totalVotiDamico / ($totalAventiDiritto - $totalSchedeNulle - $totalSchedeBianche)) * 100, 2) . "%")
-                ->description("Voti Totali ottenuti: " . $totalVotiDamico)
-                ->chart($arrayDamicoVote['damico_values'])
-                ->color('danger'),
-            Stat::make('Voti Totali Inseriti', $totaleVoti)
-                ->color('warning'),
-        ];
+        if($totaleVoti && $totalAventiDiritto) {
+            return [
+                Stat::make('MARSILIO (Cdx)', number_format(($totalVotiMarsilio / ($totalAventiDiritto - $totalSchedeNulle - $totalSchedeBianche)) * 100, 2) . "%")
+                    ->description("Voti Totali ottenuti: " . $totalVotiMarsilio)
+                    ->chart($arrayMarsilioVote['marsilio_values'])
+                    ->color('info'),
+                Stat::make('D\'AMICO (Csx)', number_format(($totalVotiDamico / ($totalAventiDiritto - $totalSchedeNulle - $totalSchedeBianche)) * 100, 2) . "%")
+                    ->description("Voti Totali ottenuti: " . $totalVotiDamico)
+                    ->chart($arrayDamicoVote['damico_values'])
+                    ->color('danger'),
+                Stat::make('Voti Totali Inseriti', $totaleVoti)
+                    ->color('warning'),
+            ];
+        } else
+            return [];
     }
 
     public function getDataMarsilio(): array
@@ -72,7 +75,7 @@ class PresidentsStats extends BaseWidget
             ->get();
 
         // Inizializziamo gli array per memorizzare i valori di marsilio e le date
-        $marsilioValues = [];
+        $damicoValues = [];
         $dates = [];
 
         // Iteriamo sui risultati e popoliamo gli array
