@@ -14,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Get;
 use Filament\Forms\Components\Fieldset;
+use Closure;
 //use Illuminate\Database\Eloquent\Builder;
 //use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -59,7 +60,15 @@ class SectionResource extends Resource
                         Forms\Components\TextInput::make('votanti')
                             ->label('Votanti')
                             ->required()
-                            ->numeric(),
+                            ->numeric()
+                            ->rules([
+                                fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
+                                    $tot = $get('schedebianche')+$get('schedenulle');
+                                    if ($tot > $value ) {
+                                        $fail("Hai inserito un numero di Votanti inferiore alla somma delle schede bianche e schede nulle.");
+                                    }
+                                },
+                            ]),
                         Forms\Components\TextInput::make('schedebianche')
                             ->label('Schede Bianche')
                             ->required()
