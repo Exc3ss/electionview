@@ -7,15 +7,20 @@ use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 use App\Models\Section;
 use Illuminate\Support\Facades\DB;
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 
 class PresidentChart extends ChartWidget
 {
+    use HasWidgetShield;
+
     protected bool $enabled = false;
     protected static ?string $heading = 'Voti Presidenti (Tutto Abruzzo)';
     protected static ?string $pollingInterval = '4s';
     protected static string $color = 'warning';
     protected static ?int $sort = 3;
     protected int | string | array $columnSpan = '2';
+
+
 
 
     protected function getData(): array
@@ -112,8 +117,8 @@ class PresidentChart extends ChartWidget
         return $formattedResults;
     }
 
-    public static function canView(): bool
+    /*public static function canView(): bool
     {
         return true;
-    }
+    }*/
 }

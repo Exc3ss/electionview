@@ -2,6 +2,7 @@
 
 namespace App\Filament\Widgets;
 
+use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\Section;
@@ -10,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 
 class PresidentsStats extends BaseWidget
 {
+    use HasWidgetShield;
     protected static ?int $sort = 1;
     protected function getStats(): array
     {
