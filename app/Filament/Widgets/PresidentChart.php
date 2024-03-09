@@ -3,9 +3,6 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
-use Flowframe\Trend\Trend;
-use Flowframe\Trend\TrendValue;
-use App\Models\Section;
 use Illuminate\Support\Facades\DB;
 use BezhanSalleh\FilamentShield\Traits\HasWidgetShield;
 
@@ -14,15 +11,11 @@ class PresidentChart extends ChartWidget
     use HasWidgetShield;
 
     protected bool $enabled = false;
-    protected static ?string $heading = 'Voti Presidenti (Tutto Abruzzo)';
+    protected static ?string $heading = 'Trend Voti Presidenti (Tutto Abruzzo)';
     protected static ?string $pollingInterval = '4s';
     protected static string $color = 'warning';
     protected static ?int $sort = 3;
     protected int | string | array $columnSpan = '2';
-
-
-
-
     protected function getData(): array
     {
 
@@ -61,9 +54,9 @@ class PresidentChart extends ChartWidget
         DB::statement("SET @csum := 0;");
 
         $results = DB::select("
-            SELECT id, marsilio AS count, created_at, (@csum := @csum + marsilio) AS cumulative_sum
+            SELECT id, marsilio AS count, updated_at, (@csum := @csum + marsilio) AS cumulative_sum
             FROM sections
-            ORDER BY id;
+            ORDER BY updated_at;
         ");
 
         // Inizializziamo gli array per memorizzare i valori di cumulative_sum e le date
@@ -74,7 +67,7 @@ class PresidentChart extends ChartWidget
         foreach ($results as $result) {
             $cumulativeSums[] = $result->cumulative_sum;
             //$dates[] = $result->created_at;
-            $dates[] = date('j/n H:i', strtotime($result->created_at));
+            $dates[] = date('j/n H:i', strtotime($result->updated_at));
         }
 
         // Costruiamo l'array finale
@@ -93,9 +86,9 @@ class PresidentChart extends ChartWidget
         DB::statement("SET @csum := 0;");
 
         $results = DB::select("
-                SELECT id, damico AS count, created_at, (@csum := @csum + damico) AS cumulative_sum
+                SELECT id, damico AS count, updated_at, (@csum := @csum + damico) AS cumulative_sum
                 FROM sections
-                ORDER BY id;
+                ORDER BY updated_at;
             ");
 
         // Inizializziamo gli array per memorizzare i valori di cumulative_sum e le date
@@ -105,7 +98,7 @@ class PresidentChart extends ChartWidget
         // Iteriamo sui risultati e popoliamo gli array
         foreach ($results as $result) {
             $cumulativeSums[] = $result->cumulative_sum;
-            $dates[] = $result->created_at;
+            $dates[] = $result->updated_at;
         }
 
         // Costruiamo l'array finale
