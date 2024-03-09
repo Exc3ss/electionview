@@ -53,10 +53,10 @@ class SectionResource extends Resource
 
                 Fieldset::make('Dati Generali')
                     ->schema([
-                        Forms\Components\TextInput::make('aventidiritto')
+                        /*Forms\Components\TextInput::make('aventidiritto')
                             ->label('Aventi Diritto')
                             ->required()
-                            ->numeric(),
+                            ->numeric(),*/
                         Forms\Components\TextInput::make('votanti')
                             ->label('Votanti')
                             ->required()
@@ -71,89 +71,65 @@ class SectionResource extends Resource
                             ]),
                         Forms\Components\TextInput::make('schedebianche')
                             ->label('Schede Bianche')
-                            ->required()
                             ->numeric(),
                         Forms\Components\TextInput::make('schedenulle')
                             ->label('Schede Nulle')
+                            ->numeric(),
+                    ])->columns(3),
+                Fieldset::make('Voti Presidenti')
+                    ->schema([
+                        Forms\Components\TextInput::make('damico')
+                            ->label('Luciano D\'Amico')
                             ->required()
                             ->numeric(),
-                    ])->columns(4),
-
+                        Forms\Components\TextInput::make('marsilio')
+                            ->label('Marco Marsilio')
+                            ->required()
+                            ->numeric(),
+                    ])->columns(2),
                 Fieldset::make('Coalizione Centrosinistra')
                     ->schema([
-                        Fieldset::make('Voti Presidente')
-                            ->schema([
-                                Forms\Components\TextInput::make('damico')
-                                    ->label('Luciano D\'Amico')
-                                    ->required()
-                                    ->numeric(),
-                            ]),
-                        Fieldset::make('Voti Liste Centrosinistra')
-                            ->schema([
                                 Forms\Components\TextInput::make('pd')
                                     ->label('Partito Democratico')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('m5s')
                                     ->label('MoVimento 5 Stelle')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('azione')
                                     ->label('Azione')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('verdisi')
                                     ->label('Verdi - Sinistra Italiana')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('abruzzoinsieme')
                                     ->label('Abruzzo Insieme')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('damicopresidente')
                                     ->label('Civici e Riformisti')
-                                    ->required()
                                     ->numeric(),
-                            ])->columns(6),
-                    ]),
+                    ])->columns(6),
 
                 Fieldset::make('Coalizione Centrodestra')
                     ->schema([
-                        Fieldset::make('Voti Presidente')
-                            ->schema([
-                                Forms\Components\TextInput::make('marsilio')
-                                    ->label('Marco Marsilio')
-                                    ->required()
-                                    ->numeric(),
-                            ]),
-                        Fieldset::make('Voti Liste Centrodestra')
-                            ->schema([
                                 Forms\Components\TextInput::make('fdi')
                                     ->label('Fratelli D\'Italia')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('lega')
                                     ->label('Lega Nord')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('forzaitalia')
                                     ->label('Forza Italia')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('noimoderati')
                                     ->label('Noi Moderati')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('unionedicentro')
                                     ->label('Unione di Centro')
-                                    ->required()
                                     ->numeric(),
                                 Forms\Components\TextInput::make('marsiliopresidente')
                                     ->label('Marsilio Presidente')
-                                    ->required()
                                     ->numeric(),
-                            ])->columns(6),
-                    ]),
+                    ])->columns(6),
 
                 /*Forms\Components\Select::make('provincia_id')
                     ->label('Provincia')
