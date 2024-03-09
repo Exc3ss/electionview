@@ -9,7 +9,7 @@ class Dashboard extends \Filament\Pages\Dashboard
     //use HasPageShield;
     public function getColumns(): int | string | array
     {
-        return 4;
+        return 6;
     }
 
 }

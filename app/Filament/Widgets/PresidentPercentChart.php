@@ -10,7 +10,7 @@ class PresidentPercentChart extends ChartWidget
 {
     use HasWidgetShield;
     protected static ?string $heading = 'Trend Percentuale Presidenti (Tutto Abruzzo)';
-    protected int | string | array $columnSpan = '2';
+    protected int | string | array $columnSpan = '3';
     protected static ?string $pollingInterval = '4s';
     protected static string $color = 'warning';
     protected static ?int $sort = 3;
