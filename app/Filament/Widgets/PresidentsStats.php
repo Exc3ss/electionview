@@ -45,6 +45,9 @@ class PresidentsStats extends BaseWidget
 
         if($totalVotiMarsilio && $totalVotiDamico) {
             return [
+                Stat::make('Dato Affluenza (Fonte: MINT): ', round(($votantiMinistero/$elettoriMinistero)*100,2)  . "%")
+                    ->description('Scrutini Inseriti: ' . $totaleVoti . " " . round (($totaleVoti / $votantiMinistero)*100,2)   . "% del totale")
+                    ->color('warning'),
                 Stat::make('MARSILIO (Cdx)', number_format(($totalVotiMarsilio / ($totalVotiDamico+$totalVotiMarsilio)) * 100, 2) . "%")
                     ->description("Voti Totali ottenuti: " . $totalVotiMarsilio)
                     ->chart($arrayMarsilioVote['marsilio_values'])
@@ -53,9 +56,6 @@ class PresidentsStats extends BaseWidget
                     ->description("Voti Totali ottenuti: " . $totalVotiDamico)
                     ->chart($arrayDamicoVote['damico_values'])
                     ->color('danger'),
-                Stat::make('Dato Affluenza (Fonte: MINT): ', round(($votantiMinistero/$elettoriMinistero)*100,2)  . "%")
-                    ->description('Scrutini Inseriti: ' . $totaleVoti . " " . round (($totaleVoti / $votantiMinistero)*100,2)   . "% del totale")
-                    ->color('warning'),
             ];
         } else
             return [
