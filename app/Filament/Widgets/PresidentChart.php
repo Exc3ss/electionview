@@ -14,8 +14,8 @@ class PresidentChart extends ChartWidget
     protected static ?string $heading = 'Trend Voti Presidenti (Tutto Abruzzo)';
     protected static ?string $pollingInterval = '4s';
     protected static string $color = 'warning';
-    protected static ?int $sort = 3;
-    protected int | string | array $columnSpan = '3';
+    protected static ?int $sort = 2;
+    //protected int | string | array $columnSpan = '3';
     protected function getData(): array
     {
 

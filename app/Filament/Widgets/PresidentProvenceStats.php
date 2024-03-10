@@ -10,8 +10,8 @@ use App\Models\Section;
 class PresidentProvenceStats extends BaseWidget
 {
     use HasWidgetShield;
-    protected static ?int $sort = 4;
-    protected int | string | array $columnSpan = '6';
+    protected static ?int $sort = 3;
+    //protected int | string | array $columnSpan = '6';
 
 
     protected function getStats(): array

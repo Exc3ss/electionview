@@ -7,9 +7,9 @@ use App\Filament\Widgets\StatsOverviewWidget;
 class Dashboard extends \Filament\Pages\Dashboard
 {
     //use HasPageShield;
-    public function getColumns(): int | string | array
+    /*public function getColumns(): int | string | array
     {
         return 6;
-    }
+    }*/
 
 }
